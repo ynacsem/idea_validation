@@ -8,20 +8,21 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { GenerateIdeaAI } from '@/configs/AiModel'
 import {useRouter} from 'next/navigation'
-import { AiResponseContext } from '@/app/_context/AiResponseContext'
+import { MainContext } from '@/app/_context/AiResponseContext'
 
 export default function IdeaValidationModal({ isOpen, onClose }) {
     const router = useRouter()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const { aiResponse, setAiResponse } = useContext(AiResponseContext);
+  const { aiResponse, setAiResponse } = useContext(MainContext);
+  const { aiRoadMap, setAiRoadMap } = useContext(MainContext);
 
   const handleSubmit = async(e) => {
     e.preventDefault()
     // Your validation logic here
     const PROMPT = 'Generate an analysis of the following business idea, focusing on its strengths, weaknesses, and key areas to focus on for improvement.\n\nBusiness Idea:'+title
     const result = await GenerateIdeaAI.sendMessage(PROMPT);
-    
+    setAiRoadMap(JSON.parse(result.response.text()));
     console.log(JSON.parse(result.response.text()))
     setAiResponse(JSON.parse(result.response.text()))
     router.push('/ideaAnalysis')

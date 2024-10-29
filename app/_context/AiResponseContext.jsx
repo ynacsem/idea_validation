@@ -1,16 +1,18 @@
 'use client'
+// _context/MainContextProvider.js
+
 import React, { createContext, useState } from 'react';
 
-// Create the context
-export const AiResponseContext = createContext();
+// Create a single context to hold both AiResponse and AiRoadMap values
+export const MainContext = createContext();
 
-// Create a provider component
-export const AiResponseProvider = ({ children }) => {
+export const MainProvider = ({ children }) => {
   const [aiResponse, setAiResponse] = useState("Initial AI Response");
+  const [aiRoadMap, setAiRoadMap] = useState([]);
 
   return (
-    <AiResponseContext.Provider value={{ aiResponse, setAiResponse }}>
+    <MainContext.Provider value={{ aiResponse, setAiResponse, aiRoadMap, setAiRoadMap }}>
       {children}
-    </AiResponseContext.Provider>
+    </MainContext.Provider>
   );
 };

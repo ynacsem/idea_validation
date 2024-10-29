@@ -45,6 +45,23 @@ const {
         },
       ],
     });
+    export const GenerateRoadMap = model.startChat({
+      generationConfig,
+      history: [
+        {
+          role: "user",
+          parts: [
+            {text: "Generate a high-quality roadmap in JSON format for the following business idea: service providing app. Each item in the roadmap should include:\n\nid: Step number (starting from 1).\ntitle: Phase of development (e.g., Market Research, Business Plan).\ndescription: Detailed explanation of the phase’s purpose and goals.\nrequirements: A single, comma-separated string of resources, tools, or actions needed for that phase.\nstatus: Set to 'on progress' for each item.\nProvide the roadmap in JSON format, covering all essential phases from initial research to product launch, with each phase status set to 'on progress'."},
+          ],
+        },
+        {
+          role: "model",
+          parts: [
+            {text: "```json\n[\n  {\n    \"id\": 1,\n    \"title\": \"Market Research\",\n    \"description\": \"Identify the target audience, analyze existing competitors, assess market demand, and determine potential business model.\",\n    \"requirements\": \"Market research tools, competitor analysis, surveys, interviews, data analysis\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"Business Plan Development\",\n    \"description\": \"Create a detailed business plan outlining the service offering, revenue model, marketing strategy, financial projections, and operational plan.\",\n    \"requirements\": \"Business plan template, financial modeling tools, market research data, team expertise\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"Minimum Viable Product (MVP) Development\",\n    \"description\": \"Build a basic version of the app with core features to test and validate the service concept with early users.\",\n    \"requirements\": \"Software development team, project management tools, design resources, testing devices\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"Early User Testing and Feedback\",\n    \"description\": \"Gather feedback from a small group of beta users to identify usability issues, gather feature requests, and refine the service offering.\",\n    \"requirements\": \"Beta testing platform, communication channels, user feedback analysis tools\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"App Refinement and Enhancement\",\n    \"description\": \"Incorporate user feedback, improve user experience, enhance features, and address any technical issues based on beta testing results.\",\n    \"requirements\": \"Software development team, design resources, testing devices, user feedback analysis tools\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 6,\n    \"title\": \"Marketing and Launch Strategy\",\n    \"description\": \"Develop a comprehensive marketing plan to reach the target audience, promote the app, and drive user acquisition.\",\n    \"requirements\": \"Marketing budget, social media platforms, content creation tools, PR outreach, app store optimization\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 7,\n    \"title\": \"App Launch and Initial User Growth\",\n    \"description\": \"Release the app on app stores and initiate marketing efforts to attract initial users and build momentum.\",\n    \"requirements\": \"App store submission process, marketing campaign execution, user onboarding materials\",\n    \"status\": \"on progress\"\n  },\n  {\n    \"id\": 8,\n    \"title\": \"Continuous Improvement and Growth\",\n    \"description\": \"Monitor user engagement, gather feedback, implement improvements, and expand the service offering based on market demand and user needs.\",\n    \"requirements\": \"Analytics tools, user feedback channels, software development team, marketing budget\",\n    \"status\": \"on progress\"\n  }\n]\n```"},
+          ],
+        },
+      ],
+    });
   
     // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
     // console.log(result.response.text());
